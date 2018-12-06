@@ -11,13 +11,28 @@ return new MaterialApp(
   title:  'Welcome to Flutter',
   home:  new Scaffold(
     appBar: new AppBar(
-      title: new Text('Welcome to Flutter'),
+      title: new Text('Welcome to  Flutter'),
     ),
     body: new Center(
-      child: new Text(wordPair.asPascalCase),
+      // child: new Text(wordPair.asPascalCase),
+      child: new RandomWords(),
     ),
   ),
 );
 }
+}
+
+class RandomWords  extends StatefulWidget {
+  @override 
+  RandomWordsState createState()=>new RandomWordsState(); 
+  
+}
+
+class RandomWordsState extends State<RandomWords>{
+@override
+  Widget build(BuildContext context) {
+    final WordPair wordPair=new WordPair.random();
+    return new Text(wordPair.asPascalCase);
+  }
 }
 
