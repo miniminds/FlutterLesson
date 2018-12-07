@@ -21,7 +21,7 @@ class RandomWords extends StatefulWidget {
 class RandomWordsState extends State<RandomWords> {
   final List<WordPair> _suggestions = <WordPair>[];
   final TextStyle _biggerFont = const TextStyle(fontSize: 18.0);
-final Set<WordPair> _saved = new Set<WordPair>();
+  final Set<WordPair> _saved = new Set<WordPair>();
 
   Widget _buildSuggestions() {
     return new ListView.builder(
@@ -39,29 +39,28 @@ final Set<WordPair> _saved = new Set<WordPair>();
   }
 
   Widget _buildRow(WordPair pair) {
-    final bool alreadySaved=_saved.contains(pair);
+    final bool alreadySaved = _saved.contains(pair);
     return new ListTile(
       title: new Text(
         pair.asPascalCase,
         style: _biggerFont,
       ),
       trailing: new Icon(
-        alreadySaved?  Icons.favorite : Icons.favorite_border,
-        color: alreadySaved? Colors.red:null,
+        alreadySaved ? Icons.favorite : Icons.favorite_border,
+        color: alreadySaved ? Colors.red : null,
       ),
       onTap: () {
         setState(() {
-                  if (alreadySaved){
-                    _saved.remove(pair);
-                  }
-                  else
-                  {
-                    _saved.add(pair);
-                  }
-                });
+          if (alreadySaved) {
+            _saved.remove(pair);
+          } else {
+            _saved.add(pair);
+          }
+        });
       },
     );
   }
+
   @override
   Widget build(BuildContext context) {
     /*  final WordPair wordPair=new WordPair.random();
@@ -69,8 +68,42 @@ final Set<WordPair> _saved = new Set<WordPair>();
     return new Scaffold(
       appBar: new AppBar(
         title: new Text("Startup Name Generator"),
+        actions: <Widget>[
+          new IconButton(icon: const Icon(Icons.list), onPressed: _pushSaved),
+        ],
       ),
       body: _buildSuggestions(),
+    );
+  }
+
+  void _pushSaved() {
+    Navigator.of(context).push(
+      new MaterialPageRoute<void>(
+        builder: (BuildContext context) {
+          final Iterable<ListTile> titles = _saved.map(
+            (WordPair pair) {
+              return new ListTile(
+                title: new Text(
+                  pair.asPascalCase,
+                  style: _biggerFont,
+                ),
+              );
+            },
+          );
+          final List<Widget> divided = ListTile.divideTiles(
+            context: context,
+            tiles: titles,
+          ).toList();
+          
+          return new Scaffold(
+            appBar: new AppBar(
+              title: const Text('Saved Suggestions'),
+            ),
+            body: new ListView(children: divided),
+            
+          );
+        },
+      ),
     );
   }
 }
