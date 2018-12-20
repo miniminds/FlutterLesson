@@ -41,7 +41,27 @@ class _LoginPageState extends State<LoginPage> {
             // TODO: Remove filled: true values (103)
             // TODO: Wrap Password with AccentColorOverride (103)
             // TODO: Add TextField widgets (101)
+            TextField(
+              decoration: InputDecoration(filled: true, labelText: 'Username:'),
+            ),
+            SizedBox(height: 12.0),
+            TextField(
+              decoration: InputDecoration(filled: true, labelText: "Password:"),
+              obscureText: true,
+            ),
             // TODO: Add button bar (101)
+            ButtonBar(
+              children: <Widget>[
+                FlatButton(
+                  child: Text("Cancel"),
+                  onPressed: () => _showDialog(context),
+                ),
+                RaisedButton(
+                  child: Text("Next"),
+                  onPressed: () {},
+                ),
+              ],
+            ),
           ],
         ),
       ),
@@ -49,4 +69,15 @@ class _LoginPageState extends State<LoginPage> {
   }
 }
 
+void _showDialog(BuildContext context) {
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: new Text("ALERT!!!"),
+        content: new Text("Login2 Cancel!!!"),
+      );
+    },
+  );
+}
 // TODO: Add AccentColorOverride (103)
