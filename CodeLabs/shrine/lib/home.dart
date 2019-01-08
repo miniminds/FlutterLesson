@@ -23,6 +23,7 @@ class HomePage extends StatelessWidget {
     List<Card> cards = List.generate(
         count,
         (int index) => Card(
+        
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
@@ -60,7 +61,7 @@ class HomePage extends StatelessWidget {
 
     return products.map((product) {
       return Card(
-        
+          elevation: 0.0,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[

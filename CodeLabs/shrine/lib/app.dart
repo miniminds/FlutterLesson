@@ -56,15 +56,23 @@ ThemeData _buildShrineTheme() {
   return base.copyWith(
     accentColor: kShrineBrown900,
     primaryColor: kShrinePink100,
-    buttonColor: kShrinePink100,
+
+
     scaffoldBackgroundColor: kShrineBackgroundWhite,
     cardColor: kShrineBackgroundWhite,
     textSelectionColor: kShrinePink100,
     errorColor: kShrineErrorRed,
+    buttonTheme:  ButtonThemeData(
+      buttonColor: kShrinePink100,
+    ),
+  
     textTheme: _buildShrineTextTheme(base.textTheme),
     primaryTextTheme: _buildShrineTextTheme(base.primaryTextTheme),
     accentTextTheme: _buildShrineTextTheme(base.accentTextTheme),
     primaryIconTheme: base.iconTheme.copyWith(color: kShrineBrown900),
+    inputDecorationTheme: InputDecorationTheme(
+border: OutlineInputBorder(),
+    ),
   );
 }
 
