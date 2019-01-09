@@ -16,6 +16,7 @@ import 'package:flutter/material.dart';
 import 'colors.dart';
 import 'home.dart';
 import 'login.dart';
+import 'supplemental/cut_corners_border.dart';
 
 final ThemeData _kShrineTheme = _buildShrineTheme();
 
@@ -52,27 +53,23 @@ class ShrineApp extends StatelessWidget {
 
 // TODO: Build a Shrine Theme (103)
 ThemeData _buildShrineTheme() {
-  final ThemeData base = ThemeData.light();
+  final ThemeData base = ThemeData.dark();
   return base.copyWith(
-    accentColor: kShrineBrown900,
-    primaryColor: kShrinePink100,
-
-
-    scaffoldBackgroundColor: kShrineBackgroundWhite,
-    cardColor: kShrineBackgroundWhite,
+    accentColor: kShrineAltDarkGrey,
+    primaryColor: kShrineAltDarkGrey,
+    buttonColor: kShrineAltYellow,
+    scaffoldBackgroundColor: kShrineAltDarkGrey,
+    cardColor: kShrineAltDarkGrey,
     textSelectionColor: kShrinePink100,
     errorColor: kShrineErrorRed,
-    buttonTheme:  ButtonThemeData(
-      buttonColor: kShrinePink100,
-    ),
-  
     textTheme: _buildShrineTextTheme(base.textTheme),
     primaryTextTheme: _buildShrineTextTheme(base.primaryTextTheme),
     accentTextTheme: _buildShrineTextTheme(base.accentTextTheme),
     primaryIconTheme: base.iconTheme.copyWith(color: kShrineBrown900),
     inputDecorationTheme: InputDecorationTheme(
-border: OutlineInputBorder(),
+border: CutCornersBorder(),
     ),
+
   );
 }
 

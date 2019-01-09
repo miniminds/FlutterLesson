@@ -16,6 +16,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'model/products_repository.dart';
 import 'model/product.dart';
+import 'supplemental/asymmetric_view.dart';
 
 class HomePage extends StatelessWidget {
   // TODO: Make a collection of cards (102)
@@ -23,7 +24,6 @@ class HomePage extends StatelessWidget {
     List<Card> cards = List.generate(
         count,
         (int index) => Card(
-        
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
@@ -61,7 +61,7 @@ class HomePage extends StatelessWidget {
 
     return products.map((product) {
       return Card(
-          elevation: 0.0,
+        elevation: 0.0,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
@@ -80,7 +80,6 @@ class HomePage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
                     Text(
-                      
                       product == null ? '' : product.name,
                       style: theme.textTheme.button,
                       softWrap: false,
@@ -143,13 +142,14 @@ class HomePage extends StatelessWidget {
           ),
         ],
       ),
+      body: AsymmetricView(
+          products: ProductsRepository.loadProducts(Category.all)),
       // TODO: Add a grid view (102)
-      body: GridView.count(
+      /*body: GridView.count(
         crossAxisCount: 2,
         padding: EdgeInsets.all(16.0),
         childAspectRatio: 8.0 / 9.0,
-        children: _buildGridCards(context),
-      ),
+        children: _buildGridCards(context),*/
     );
   }
 }

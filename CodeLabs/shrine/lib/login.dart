@@ -60,14 +60,20 @@ class _LoginPageState extends State<LoginPage> {
             ButtonBar(
               
               children: <Widget>[
-                RaisedButton(
+                FlatButton(
                   color: kShrinePink100,
+                  shape: BeveledRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(7.0))
+                  ),
                   child: Text("Cancel"),
                   onPressed: () => _showDialog(context),
                 ),
                 RaisedButton(
                   
                   child: Text("Next"),
+                  elevation: 8.0,
+                   shape: BeveledRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(7.0))),
                   onPressed: () {
                     Navigator.pop(context);
                   },
