@@ -18,6 +18,8 @@ import 'model/products_repository.dart';
 import 'model/product.dart';
 import 'supplemental/asymmetric_view.dart';
 
+
+
 class HomePage extends StatelessWidget {
   // TODO: Make a collection of cards (102)
   List<Card> _buildGridCardsOld(int count) {
@@ -107,8 +109,10 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // TODO: Return an AsymmetricView (104)
+    return AsymmetricView(
+          products: ProductsRepository.loadProducts(Category.all));
     // TODO: Pass Category variable to AsymmetricView (104)
-    return Scaffold(
+   /*  return Scaffold(
       // TODO: Add app bar (102)
       appBar: AppBar(
         title: Text("SHRINE"),
@@ -150,6 +154,7 @@ class HomePage extends StatelessWidget {
         padding: EdgeInsets.all(16.0),
         childAspectRatio: 8.0 / 9.0,
         children: _buildGridCards(context),*/
-    );
+    ); */
+
   }
 }
