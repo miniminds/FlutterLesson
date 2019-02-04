@@ -2,7 +2,6 @@ import 'package:baby_names/Record.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-
 final dummySnapshot = [
   {"name": "Filip", "votes": 15},
   {"name": "Abraham", "votes": 14},
@@ -41,13 +40,12 @@ class _MyHomePageState extends State<MyHomePage> {
 
   ///Widget
   Widget _buildBody(BuildContext context) {
-
     return StreamBuilder<QuerySnapshot>(
-    stream: Firestore.instance.collection('baby').snapshots(),
-builder:  (context, snapshot) {
-if (!snapshot.hasData) return LinearProgressIndicator();
-return _buildList(context, snapshot.data.documents);
-},
+      stream: Firestore.instance.collection('baby').snapshots(),
+      builder: (context, snapshot) {
+        if (!snapshot.hasData) return LinearProgressIndicator();
+        return _buildList(context, snapshot.data.documents);
+      },
     );
   }
 
@@ -72,7 +70,12 @@ return _buildList(context, snapshot.data.documents);
         child: ListTile(
           title: Text(record.name),
           trailing: Text(record.votes.toString()),
-          onTap: () => print(record),
+          onTap: () => Firestore.instance.runTransaction((transaction) async {
+                final freshSnapshot = await transaction.get(record.reference);
+                final fresh = Record.fromSnapshot(freshSnapshot);
+                await transaction
+                    .update(record.reference, {'votes': fresh.votes + 1});
+              }),
         ),
       ),
     );
