@@ -1,6 +1,8 @@
 import 'package:baby_names/Record.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 
 final dummySnapshot = [
   {"name": "Filip", "votes": 15},
