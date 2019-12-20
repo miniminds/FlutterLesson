@@ -10,10 +10,19 @@ class MyApp extends StatelessWidget {
       home: Scaffold(
           backgroundColor: Colors.teal,
           body: SafeArea(
-            child: Container(
-              child: Row(
-                children: <Widget>[],
-              ),
+            child: Column(
+              children: <Widget>[
+                Text('Image'),
+                Image(
+                  width: 150,
+                  height: 150,
+                  image: AssetImage('miCard.jpg'),
+                ),
+                CircleAvatar(
+                  radius: 50.0,
+                  backgroundImage: AssetImage('assets/miCard.jpg'),
+                ),
+              ],
             ),
           )),
     );
